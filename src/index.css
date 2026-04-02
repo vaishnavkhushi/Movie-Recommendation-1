@@ -49,5 +49,10 @@ body {
 
 /* Discover page background override (explicit) */
 body.discover-bg {
+  background: #F3E3D0 !important;
+}
+
+/* Ensure root discover container uses same background as trending */
+.discover-root {
   background: #F3E3D0;
 }
