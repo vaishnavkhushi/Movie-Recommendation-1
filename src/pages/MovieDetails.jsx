@@ -228,7 +228,7 @@ const MovieDetails = () => {
                       
                       <div className="flex items-start space-x-2">
                         <Quote className="h-4 w-4 text-gray-400 mt-1 flex-shrink-0" />
-                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        <p className="text-black dark:text-gray-300 leading-relaxed">
                           {review.content}
                         </p>
                       </div>
