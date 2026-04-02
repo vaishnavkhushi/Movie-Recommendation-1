@@ -137,7 +137,7 @@ const MovieDetails = () => {
                   </div>
                 </div>
                 
-                <p className="text-lg text-white/90 mb-8 max-w-3xl leading-relaxed">
+                <p className="text-lg text-white mb-8 max-w-3xl leading-relaxed">
                   {movie.overview}
                 </p>
               </motion.div>

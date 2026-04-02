@@ -46,7 +46,7 @@ const MovieCard = ({ movie, index = 0 }) => {
             {formatDate(movie.release_date)}
           </div>
           
-          <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+          <p className="text-sm text-white line-clamp-3">
             {movie.overview}
           </p>
         </div>
