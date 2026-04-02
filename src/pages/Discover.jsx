@@ -138,7 +138,7 @@ const Discover = () => {
           animate={{ height: isFilterOpen ? 'auto' : 0, opacity: isFilterOpen ? 1 : 0 }}
           className="overflow-hidden mb-8"
         >
-          <div className="card p-6">
+          <div className="p-6 rounded-xl shadow-sm mb-4 bg-secondary-500 border border-accent">
             {/* Categories */}
             <div className="mb-6">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">

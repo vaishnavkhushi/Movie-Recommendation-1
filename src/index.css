@@ -12,10 +12,11 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: Arial, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #F3E3D0; /* main background */
 }
 
 .scrollbar-hide {
@@ -33,10 +34,15 @@ body {
   }
   
   .btn-secondary {
-    @apply bg-accent text-gray-900 dark:text-white font-medium py-2 px-6 rounded-lg transition-colors duration-200;
+    @apply bg-accent text-gray-900 font-medium py-2 px-6 rounded-lg transition-colors duration-200;
   }
 
   .card {
-    @apply bg-primary-100 dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-accent;
+    @apply bg-primary-100 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-accent;
   }
+}
+
+/* Utility for subtle section spacing */
+.section {
+  @apply p-6 rounded-xl bg-primary-100 border border-accent;
 }
