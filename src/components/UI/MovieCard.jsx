@@ -27,7 +27,7 @@ const MovieCard = ({ movie, index = 0 }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
           <div className="absolute top-3 right-3">
-            <div className="bg-black/70 backdrop-blur-sm rounded-full px-2 py-1 flex items-center space-x-1">
+            <div className="bg-accent/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center space-x-1 border border-accent">
               <Star className="h-3 w-3 text-yellow-400 fill-current" />
               <span className="text-white text-xs font-medium">
                 {movie.vote_average?.toFixed(1)}
