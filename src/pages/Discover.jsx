@@ -25,6 +25,14 @@ const Discover = () => {
     fetchMovies();
   }, []);
 
+  // set a discover-specific body class so the page background changes on mount
+  useEffect(() => {
+    document.body.classList.add('discover-bg');
+    return () => {
+      document.body.classList.remove('discover-bg');
+    };
+  }, []);
+
   useEffect(() => {
     fetchMovies();
   }, [selectedGenre, selectedCategory, searchQuery]);

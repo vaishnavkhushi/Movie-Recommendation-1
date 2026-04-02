@@ -46,3 +46,8 @@ body {
 .section {
   @apply p-6 rounded-xl bg-primary-100 border border-accent;
 }
+
+/* Discover page background override (explicit) */
+body.discover-bg {
+  background: #F3E3D0;
+}
