@@ -84,7 +84,7 @@ const MovieDetails = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
         </div>
         
-        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 pb-16 text-white">
           <div className="max-w-7xl mx-auto">
             <Link
               to="/discover"
