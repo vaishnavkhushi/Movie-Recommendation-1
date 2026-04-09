@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Star, Calendar, Clock, ArrowLeft, User, Quote } from 'lucide-react';
+import { Star, Calendar, Clock, ArrowLeft, User, Quote, Play } from 'lucide-react';
 import { tmdbApi, getImageUrl } from '../services/tmdbApi';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 
@@ -10,6 +10,8 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const [cast, setCast] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [watchProviders, setWatchProviders] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,15 +20,19 @@ const MovieDetails = () => {
 
   const fetchMovieDetails = async () => {
     try {
-      const [movieResponse, creditsResponse, reviewsResponse] = await Promise.all([
+      const [movieResponse, creditsResponse, reviewsResponse, videosResponse, providersResponse] = await Promise.all([
         tmdbApi.getMovieDetails(id),
         tmdbApi.getMovieCredits(id),
-        tmdbApi.getMovieReviews(id)
+        tmdbApi.getMovieReviews(id),
+        tmdbApi.getMovieVideos(id),
+        tmdbApi.getWatchProviders(id)
       ]);
 
       setMovie(movieResponse);
       setCast(creditsResponse.cast.slice(0, 6));
       setReviews(reviewsResponse.results.slice(0, 3));
+      setVideos(videosResponse.results);
+      setWatchProviders(providersResponse.results);
     } catch (error) {
       console.error('Error fetching movie details:', error);
     } finally {
@@ -46,6 +52,17 @@ const MovieDetails = () => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return `${hours}h ${mins}m`;
+  };
+
+  const getTrailer = () => {
+    const trailer = videos.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+    return trailer ? `https://www.youtube.com/watch?v=${trailer.key}` : null;
+  };
+
+  const getWatchLink = () => {
+    if (!watchProviders || !watchProviders.US) return false;
+    const providers = watchProviders.US.flatrate || watchProviders.US.rent || watchProviders.US.buy;
+    return providers && providers.length > 0;
   };
 
   if (loading) {
@@ -140,6 +157,26 @@ const MovieDetails = () => {
                 <p className="text-lg text-white mb-8 max-w-3xl leading-relaxed">
                   {movie.overview}
                 </p>
+
+                {getTrailer() ? (
+                  <a
+                    href={getTrailer()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary inline-flex items-center text-lg px-8 py-4 rounded-xl"
+                  >
+                    <Play className="mr-2 h-5 w-5" />
+                    Play Trailer
+                  </a>
+                ) : getWatchLink() ? (
+                  <button
+                    onClick={() => window.open(`https://www.justwatch.com/us/search?q=${encodeURIComponent(movie.title)}`, '_blank')}
+                    className="btn-primary inline-flex items-center text-lg px-8 py-4 rounded-xl"
+                  >
+                    <Play className="mr-2 h-5 w-5" />
+                    Where to Watch
+                  </button>
+                ) : null}
               </motion.div>
             </div>
           </div>

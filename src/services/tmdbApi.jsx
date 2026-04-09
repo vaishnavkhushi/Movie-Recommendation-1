@@ -38,6 +38,16 @@ export const tmdbApi = {
     return response.json();
   },
 
+  getMovieVideos: async (movieId) => {
+    const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}`);
+    return response.json();
+  },
+
+  getWatchProviders: async (movieId) => {
+    const response = await fetch(`${BASE_URL}/movie/${movieId}/watch/providers?api_key=${API_KEY}`);
+    return response.json();
+  },
+
   getGenres: async () => {
     const response = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
     return response.json();
